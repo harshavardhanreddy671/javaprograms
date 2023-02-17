@@ -1,0 +1,29 @@
+import java.util.Arrays;
+
+class GenericSorter<T extends Comparable<T>> {
+
+    private T[] values;
+
+    public GenericSorter(T[] values) {
+        this.values = values;
+    }
+
+    public T[] sort() {
+        Arrays.sort(values);
+        return values;
+    }
+
+    public static void main(String[] args) {
+        Integer[] intValues = {5, 1, 3, 7, 2};
+        GenericSorter<Integer> intSorter = new GenericSorter<>(intValues);
+        System.out.println(Arrays.toString(intSorter.sort()));
+
+        Double[] doubleValues = {4.0, 1.5, 3.2, 7.8, 2.1};
+        GenericSorter<Double> doubleSorter = new GenericSorter<>(doubleValues);
+        System.out.println(Arrays.toString(doubleSorter.sort()));
+
+        String[] stringValues = {"banana", "apple", "orange", "pear"};
+        GenericSorter<String> stringSorter = new GenericSorter<>(stringValues);
+        System.out.println(Arrays.toString(stringSorter.sort()));
+    }
+}
