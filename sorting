@@ -1,0 +1,22 @@
+import java.util.*;
+class map {
+
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("John", 23);
+        map.put("Mary", 32);
+        map.put("Alice", 27);
+        map.put("Bob", 19);
+        map.put("Mike", 36);
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });  
+           for (Map.Entry<String, Integer> entry : list) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
+    }
+
+}
