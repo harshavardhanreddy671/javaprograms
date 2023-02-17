@@ -1,0 +1,30 @@
+import java.util.*;
+class main {
+    public static String mostFrequentWord(String paragraph, String[] banned) {
+        Map<String, Integer> wordCount = new HashMap<>();
+        Set<String> bannedSet = new HashSet<>(Arrays.asList(banned));
+        String[] words = paragraph.split("\\W+");
+        for (String word : words) {
+            String lowerCaseWord = word.toLowerCase();
+            if (!bannedSet.contains(lowerCaseWord)) {
+                wordCount.put(lowerCaseWord, wordCount.getOrDefault(lowerCaseWord, 0) + 1);
+            }
+        }
+        String mostFrequentWord = null;
+        int maxCount = 0;
+        for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                mostFrequentWord = entry.getKey();
+            }
+        }
+        return mostFrequentWord;
+    }
+
+    public static void main(String[] args) {
+        String paragraph = "This is a sample paragraph with sample words.";
+        String[] banned = {"is", "a", "with"};
+        String mostFrequent = mostFrequentWord(paragraph, banned);
+        System.out.println("The most frequent word that is not banned is: " + mostFrequent);
+    }
+}
